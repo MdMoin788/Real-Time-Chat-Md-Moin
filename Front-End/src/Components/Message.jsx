@@ -8,9 +8,9 @@ const Message = ({ user, message, i ,classs }) => {
         return (
             <>
             { i > 0 &&  user ?   <div className={`messageBox ${classs}`}  >
-                {message == "Online" ? null : message}
+                {`${user} : ${message}` == "Online" ? null : `${user} : ${message}` }
             </div> : <div className={`messageBox ${classs}`}>
-            {message == "Online" ? null : message}
+           {message == "Online" ? null : `${"you"} : ${message}`}
 
             </div>}
             </>

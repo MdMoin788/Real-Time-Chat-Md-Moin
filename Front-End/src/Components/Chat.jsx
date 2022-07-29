@@ -4,10 +4,12 @@ import socketIo from "socket.io-client";
 // import "./Chat.css";
 // import sendLogo from "../../images/send.png";
 import Message from "./Message";
+import Style from "../Styles/Styles.module.css"
+
 import ReactScrollToBottom from "react-scroll-to-bottom";
 // import closeIcon from "../../images/closeIcon.png";
 let socket;
-const ENDPOINT = "http://localhost:5000/";
+const ENDPOINT = "https://real-time-api.herokuapp.com/";
 const Chat = () => {
     const [id, setid] = useState("");
     const [messages, setMessages] = useState([])
@@ -52,8 +54,10 @@ const Chat = () => {
         }
     }, [messages])
     return (
-        <div className="chatPage">
-            <div className="chatContainer">
+        <div  className={Style.chatPage}>
+            <div className={Style.Side}>All Users</div>
+            <div  className={Style.chatContainer}>
+
                 <div className="header">
                     <h2>WE CHAT</h2>
                 </div>
@@ -61,9 +65,10 @@ const Chat = () => {
                     <h3>{status}</h3>
                     {messages.map((item, i) => <Message user={item.id === id ? '' : item.user} message={item.message} i={i} classs={item.id === id ? 'right' : 'left'} />)}
                 </ReactScrollToBottom>
-                <div className="inputBox">
-                    <input onKeyPress={(event) => event.key === 'Enter' ? send() : null} type="text" id="chatInput" />
-                    <button onClick={send} className="sendBtn"><img src={"sendLogo"} alt="Send" /></button>
+              
+                <div className={Style.chatBox}>
+                    <input onKeyPress={(event) => event.key === 'Enter' ? send() : null} type="text" className={Style.chatInput}  id="chatInput" />
+                    <button className={Style.chatBtn} onClick={send} >Send</button>
                 </div>
             </div>
         </div>
